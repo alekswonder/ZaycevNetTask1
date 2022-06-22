@@ -55,7 +55,7 @@ public class GetDiscount implements Discountable {
         }
         while (count < readLength) {
             for (int i = offset; i < price.length; i++) {
-                result.add(price[i]*discount/100);
+                result.add((int) (Math.floor(price[i]*discount/100)));
                 if (i == price.length-1 || i == readLength) {
                     count = readLength+1;
                     break;

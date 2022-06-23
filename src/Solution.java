@@ -9,6 +9,7 @@ public class Solution {
         int discount;
         int offset;
         int readLength;
+
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             System.out.println("Введите список цен через запятую:");
             String line = reader.readLine();
@@ -25,8 +26,8 @@ public class Solution {
 
         System.out.println("Новые цены: ");
         Arrays.stream(getDiscount.decryptData(getDiscount.getPrice(),
-                                                getDiscount.getDiscount(),
-                                                getDiscount.getOffset(),
-                                                getDiscount.getReadLength())).forEach(System.out::println);
+                getDiscount.getDiscount(),
+                getDiscount.getOffset(),
+                getDiscount.getReadLength())).forEach(System.out::println);
     }
 }

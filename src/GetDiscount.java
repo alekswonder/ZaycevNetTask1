@@ -62,7 +62,7 @@ public class GetDiscount implements Discountable {
                         break;
                     }
                 } else {
-                    System.out.println("Что-то пошло не так с ценой с индексом" + price[i]);
+                    System.out.println("Что-то пошло не так с ценой с индексом" + i);
                     result.add(price[i]);
                 }
             }

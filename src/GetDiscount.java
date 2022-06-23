@@ -40,28 +40,34 @@ public class GetDiscount implements Discountable {
      * @return - массив новых цен.
      */
     @Override
-    public int[] decryptData(int[] price, int discount, int offset, int readLength) throws WrongLengthForReadException, WrongPositionException {
+    public int[] decryptData(int[] price, int discount, int offset, int readLength){
         //TODO реализовать метод
         ArrayList<Integer> result = new ArrayList<Integer>();
         int count = 0;
-        int tmp = 0;
         if (readLength > price.length || readLength < 0) {
-            System.out.println("Неверная длинна массива");
-            throw new WrongLengthForReadException("Wrong length for read array exception");
+            System.out.println("Неверная длина массива");
         }
         if (offset < 0 || offset > price.length-1) {
             System.out.println("Неверный номер позиции");
-            throw new WrongPositionException("Wrong position to offset from array");
         }
-        while (count < readLength) {
+        if (readLength == 0) {
+            return result.stream().mapToInt(i -> i).toArray();
+        }
+        if (discount <= 99 && discount>= 1) {
             for (int i = offset; i < price.length; i++) {
-                result.add((int) (Math.floor(price[i]*discount/100)));
-                if (i == price.length-1 || i == readLength) {
-                    count = readLength+1;
-                    break;
+                if (price[i] > 0) {
+                    result.add(price[i] - (int) (Math.floor(price[i] * discount / 100)));
+                    count++;
+                    if (count == readLength) {
+                        break;
+                    }
+                } else {
+                    System.out.println("Что-то пошло не так с ценой с индексом" + price[i]);
+                    result.add(price[i]);
                 }
             }
-            count++;
+        } else {
+            System.out.println("Неверна задана скидка");
         }
         return (result.stream().mapToInt(i -> i).toArray());
     }

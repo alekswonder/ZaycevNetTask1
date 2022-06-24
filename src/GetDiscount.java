@@ -46,13 +46,15 @@ public class GetDiscount implements Discountable {
         ArrayList<Integer> result = new ArrayList<Integer>();
         int count = 0;
         if (readLength > price.length || readLength < 0) {
-            System.out.println("Неверная длина массива");
+            System.out.println("Ошибка! Неверная длина массива или количество цен ");
+            return getArrayFromResult(result);
         }
         if (offset < 0 || offset > price.length - 1) {
             System.out.println("Неверный номер позиции");
+            return getArrayFromResult(result);
         }
         if (readLength == 0) {
-            return result.stream().mapToInt(i -> i).toArray();
+            return getArrayFromResult(result);
         }
         if (discount <= 99 && discount >= 1) {
             for (int i = offset; i < price.length; i++) {
@@ -70,6 +72,10 @@ public class GetDiscount implements Discountable {
         } else {
             System.out.println("Неверна задана скидка");
         }
-        return (result.stream().mapToInt(i -> i).toArray());
+        return getArrayFromResult(result);
+    }
+
+    private int[] getArrayFromResult(ArrayList<Integer> integers) {
+        return integers.stream().mapToInt(i -> i).toArray();
     }
 }

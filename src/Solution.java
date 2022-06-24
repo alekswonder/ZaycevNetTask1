@@ -24,7 +24,7 @@ public class Solution {
 
         GetDiscount getDiscount = new GetDiscount(prices, discount, offset, readLength);
 
-        System.out.println("Новые цены: ");
+        System.out.println("\nНовые цены: ");
         Arrays.stream(getDiscount.decryptData(getDiscount.getPrice(),
                 getDiscount.getDiscount(),
                 getDiscount.getOffset(),
